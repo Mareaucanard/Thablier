@@ -7,7 +7,6 @@ env:
 
 jobs:
   publish:
-    needs: compile
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
 
