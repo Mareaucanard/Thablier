@@ -1,0 +1,15 @@
+FROM alpine:3.18.4
+COPY . /app
+WORKDIR /app
+
+RUN apk add git make gcc musl-dev
+RUN git clone https://github.com/catseye/Befunge-93.git befunge-build
+
+RUN make -C befunge-build
+
+RUN cp befunge-build/bin/bef bef
+RUN rm -rf befunge-build/
+
+CMD ["bef", "app/main.bf"]
+
+

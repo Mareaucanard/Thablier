@@ -1,0 +1,3 @@
+FROM openjdk:21-rc
+
+RUN microdnf install maven

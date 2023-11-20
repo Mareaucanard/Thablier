@@ -1,6 +1,6 @@
 name: Publish to Mirror
 
-on: [push, pull_request]
+on: [push]
 
 env:
   MIRROR_URL: git@github.com:EpitechPromo2026/B-DOP-500-TLS-5-1-whanos-matthieu.fraiz.git

@@ -1,0 +1,9 @@
+FROM openjdk:21
+
+COPY . /app
+WORKDIR /app
+
+RUN microdnf install maven
+RUN mvn package -f app
+
+CMD ["java", "-jar", "app.jar"]
