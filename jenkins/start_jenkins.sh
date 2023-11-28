@@ -18,6 +18,7 @@ if [ ! "$(docker ps -q -f name=jenkins)" ]; then
     fi
     # run your container
     docker run --rm -d -p 8080:8080 -p 50000:50000 \
-    -v jenkins:/var/jenkins_home \
+    --volume /home/epi/WhanOS/jenkins/jenkins.yml:/var/jenkins_home/jenkins.yml \
+    --volume /home/epi/WhanOS/jenkins/job_dsl.groovy:/var/jenkins_home/job_dsl.groovy \
     --name jenkins jenkins:local
 fi
