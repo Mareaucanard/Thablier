@@ -1,13 +1,5 @@
 jenkins:
   systemMessage: "Welcome to the whanos Jenkins Instance."
-  securityRealm:
-    local:
-      allowsSignup: false
-      enableCaptcha: false
-      users:
-      - id: "admin"
-        name: "admin"
-        password: "${USER_ADMIN_PASSWORD}"
   authorizationStrategy:
     roleBased:
       roles:
@@ -16,6 +8,17 @@ jenkins:
             description: "Whanos master"
             permissions:
               - "Overall/Administer"
-
+              - "Global/Read"
+              - "Global/Write"
+            entries:
+              - user: "admin"
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+      - id: "admin"
+        name: "admin"
+        password: "${ADMIN_USER_PASSWORD}"
 jobs:
   - file: "/var/jenkins_home/job_dsl.groovy"

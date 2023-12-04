@@ -1,0 +1,10 @@
+version: '3'
+services:
+  jenkins:
+    image: jenkins:local
+    container_name: jenkins
+    ports:
+      - 8080:8080
+      - 50000:50000
+    environment:
+      - ADMIN_USER_PASSWORD=${ADMIN_USER_PASSWORD}
