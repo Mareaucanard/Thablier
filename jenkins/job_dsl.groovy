@@ -1,42 +1,30 @@
-folder('Tools') {
-    description('Folder for miscellaneous tools.')
+folder('Whanos base images') {
+    description('Folder for Whanos base images.')
 }
-job('/Tools/clone-repository') {
-    parameters {
-        stringParam('GIT_REPOSITORY_URL', null, description='Git URL of the repository to clone')
-    }
+folder('Projects') {
+    description('Folder for Whanos projects.')
+}
+
+job('Whanos base images/whanos-c') {
     steps {
-        shell('git clone ${GIT_REPOSITORY_URL}')
+        shell('gcc --version | grep "13.2" > /dev/null')
+        shell('test -f Makefile')
+        shell('make')
+        shell('./<compiled_binary>')
     }
     wrappers {
         preBuildCleanup()
     }
 }
 
-job('/Tools/SEED') {
-    parameters {
-        stringParam('GITHUB_NAME', null, description='GitHub repository owner/repo_name (e.g.: "EpitechIT31000/chocolatine")')
-        stringParam('DISPLAY_NAME', null, description='Display name for the job')
-    }
-    steps {
-        dsl {
-            text ('''job("${DISPLAY_NAME}") {
-                scm {
-                    github("${GITHUB_NAME}")
-                }
-                triggers {
-                    scm('* * * * *')
-                }
-                steps {
-                    shell("make fclean")
-                    shell("make")
-                    shell("make tests_run")
-                    shell("make clean")
-                }
-                wrappers {
-                    preBuildCleanup()
-                }
-            }''')
-        }
-    }
-}
+// job('Whanos base images/whanos-java') {
+// }
+
+// job('Whanos base images/whanos-javascript') {
+// }
+
+// job('Whanos base images/whanos-python') {
+// }
+
+// job('Whanos base images/whanos-befunge') {
+// }

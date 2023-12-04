@@ -20,5 +20,11 @@ jenkins:
       - id: "admin"
         name: "admin"
         password: "${ADMIN_USER_PASSWORD}"
+
 jobs:
   - file: "/var/jenkins_home/job_dsl.groovy"
+
+appearance:
+  themeManager:
+    disableUserThemes: true
+    theme: "darkSystem"
