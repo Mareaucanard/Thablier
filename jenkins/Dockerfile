@@ -8,4 +8,5 @@ COPY job_dsl.groovy /var/jenkins_home/job_dsl.groovy
 RUN jenkins-plugin-cli --plugins "configuration-as-code:latest" \
     "role-strategy:latest" "groovy:latest" "job-dsl:latest" \
     "ws-cleanup:latest" "dark-theme:latest" "docker-plugin:latest"
-RUN apt-get update && apt-get install -y docker
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+RUN mv kubectl /usr/local/bin/kubectl

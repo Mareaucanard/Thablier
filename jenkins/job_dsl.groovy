@@ -7,11 +7,9 @@ folder('Projects') {
 
 job('Whanos base images/whanos-c') {
     steps {
-        shell('docker build -t whanos-c .')
-        shell('docker run --rm whanos-c')
-    }
-    wrappers {
-        preBuildCleanup()
+        shell('kubectl apply -f /kubeyml/c.yml') // ADD YAML FILE
+        shell('kubectl wait --for=condition=complete job/whanos-c')
+        shell('kubectl logs job/whanos-c')
     }
 }
 
